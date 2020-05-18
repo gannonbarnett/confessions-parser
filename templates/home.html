@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    <script> 
+        function updatePlot() {
+            document.getElementById("plot-img-id").src = "/word_freq/" + document.getElementById("target_word_input").value + "/plot.png";  
+            console.log(document.getElementById("plot-img-id").src); 
+        }
+    </script> 
+    </head>
+    <body>
+        <h1>MIT Confessions Analyzer</h1>
+        <h1></h1>
+        <p>  Word to plot: <input id="target_word_input" type="text"> </p>
+        <button onclick="updatePlot();">Get Plot</button>
+
+        <img id="plot-img-id" src="word_freq/biden/plot.png">
+    </body>
+</html>
