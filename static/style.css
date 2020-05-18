@@ -1,0 +1,11 @@
+#plot-img-id {
+    display:block;
+    margin:auto;
+}
+#input-box {
+    width: 100%; 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center;
+}
+

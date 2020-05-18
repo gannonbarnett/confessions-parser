@@ -4,17 +4,31 @@
         <title>{{ title }}</title>
     <script> 
         function updatePlot() {
-            document.getElementById("plot-img-id").src = "/word_freq/" + document.getElementById("target_word_input").value + "/plot.png";  
-            console.log(document.getElementById("plot-img-id").src); 
+            //remove spaces 
+            const word_freq_query = document.getElementById("target_word_input").value.replace(/\s/g, ''); 
+            const show_num = document.getElementById("show_num_input").checked; 
+            const use_avg = document.getElementById("use_avg_input").checked; 
+
+            const queries = []; 
+            if (word_freq_query) {
+                queries.push("wf=" + word_freq_query);
+            }
+            queries.push("show_num="  + show_num);
+            queries.push("use_avg=" + use_avg); 
+            const query_str = queries.join("&"); 
+
+            document.getElementById("plot-img-id").src = "/plot.png?" + query_str;  
         }
     </script> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     </head>
     <body>
         <h1>MIT Confessions Analyzer</h1>
-        <h1></h1>
-        <p>  Word to plot: <input id="target_word_input" type="text"> </p>
-        <button onclick="updatePlot();">Get Plot</button>
-
+        <h3><a href='https://github.com/gbarnett/confessions-parser'>github</a></h3>
+        <div id="input-box">  
+            <p>Word frequency:<input id="target_word_input" type="text"> Use average:<input type="checkbox" id="use_avg_input"> Show num confessions:<input type="checkbox" id="show_num_input"> </p>
+            <button onclick="updatePlot();">Get Plot</button>
+        </div>
         <img id="plot-img-id" src="word_freq/biden/plot.png">
     </body>
 </html>
